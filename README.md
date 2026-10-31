@@ -2,42 +2,56 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
-  <img src="./assets/hero-light.svg" alt="Coolen — two silver Coloop arcs surrounded by slowly orbiting lines" width="100%">
+  <img src="./assets/hero-light.svg" alt="Coolen — embedded systems, robotics and edge AI; the Coloop mark inside a processor with animated signal traces" width="100%">
 </picture>
 
-# Hi, I'm Coolen.
+### Software meets the physical world.
 
-I work on embedded systems, robotics, and edge AI — from motor control and simulation to tools that connect software with physical devices.
+I'm **Coolen**. I build embedded systems, robotic simulations, and tools that connect AI with physical devices. My work ranges from FreeRTOS motor control to MuJoCo simulation and edge-AI experiments.
 
-[Explore my repositories ↗](https://github.com/Coolenz?tab=repositories) · [中文介绍 →](./README.zh-CN.md)
+[Explore repositories](https://github.com/Coolenz?tab=repositories) &nbsp; / &nbsp; [Read in Chinese](./README.zh-CN.md)
 
-## Building Coloop
+## Current build: Coloop
 
-**Bringing AI closer to the device.**
-
-Coloop is my ongoing exploration of AI-assisted computer operation, connecting a Windows workbench with RK hardware. The project is in active development in a private repository.
+An ongoing exploration of **AI-assisted computer operation**, connecting a Windows workbench with RK hardware. The project is in active development in a private repository.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/loop-dark.svg">
-  <img src="./assets/loop-light.svg" alt="Coloop concept: observe, plan, act, then verify in a continuous loop" width="100%">
+  <img src="./assets/loop-light.svg" alt="Coloop concept: observe screen context, plan a task, act through a device, then verify the result" width="100%">
 </picture>
 
-## Selected work
+## Open-source work
 
-### [5-DOF robotic arm simulation ↗](https://github.com/Coolenz/arm-robot-mujoco-simulation)
+**[5-DOF robotic arm simulation](https://github.com/Coolenz/arm-robot-mujoco-simulation)**  
+Robotic movement in a simulated environment, built with **Python** and **MuJoCo**.
 
-A five-degree-of-freedom robotic arm simulation built with **MuJoCo** and **Python**. Exploring robotic movement in a simulated environment.
+**[FreeRTOS dual-channel FOC](https://github.com/Coolenz/freeRTOS_FOC)**  
+Dual-channel field-oriented motor control in **C++**, including closed-loop position control.
 
-### [FreeRTOS dual-channel FOC ↗](https://github.com/Coolenz/freeRTOS_FOC)
+```text
+embedded     C++ / FreeRTOS / motor control
+robotics     Python / MuJoCo / simulation
+exploring    edge AI / human–device interaction
+```
 
-Dual-channel field-oriented motor control with **FreeRTOS** and **C++**, including closed-loop position control.
+## Contribution skyline
 
-## Across the stack
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/activity-dark.svg">
+  <img src="./profile-3d-contrib/activity-light.svg" alt="Coolenz's public GitHub contribution calendar as a 3D skyline, with language and activity breakdowns" width="100%">
+</picture>
 
-**Embedded** &nbsp; C++ · FreeRTOS · Motor control  
-**Robotics** &nbsp; Python · MuJoCo · Simulation  
-**Exploring** &nbsp; Edge AI · Human–device interaction
+Generated daily from public GitHub activity. [Update workflow](https://github.com/Coolenz/Coolenz/actions/workflows/profile.yml).
+
+<details>
+  <summary>Follow the contribution trace</summary>
+  <br>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-trace-dark.svg">
+    <img src="./assets/contribution-trace-light.svg" alt="An animated trace through Coolenz's GitHub contribution calendar" width="100%">
+  </picture>
+</details>
 
 ---
 
-<p align="center">Software meets the physical world.<br><a href="https://github.com/Coolenz?tab=repositories">Follow the work on GitHub ↗</a></p>
+[All projects](https://github.com/Coolenz?tab=repositories) &nbsp; / &nbsp; [How this profile is built](./PROFILE.md)

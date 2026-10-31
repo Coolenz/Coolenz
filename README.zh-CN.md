@@ -2,42 +2,56 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
-  <img src="./assets/hero-light.svg" alt="Coolen：银色 Coloop 双弧标记，周围的轨道线缓慢旋转" width="100%">
+  <img src="./assets/hero-light.svg" alt="Coolen：嵌入式、机器人与端侧 AI；Coloop 标志位于处理器中，周围有流动的信号线路" width="100%">
 </picture>
 
-# 你好，我是 Coolen。
+### 让软件与真实世界相遇。
 
-我在做嵌入式、机器人与端侧 AI 相关的项目。从电机控制、机械臂仿真，到连接软件与实体设备的工具，探索代码如何走进真实世界。
+我是 **Coolen**，在做嵌入式、机器人仿真，以及连接 AI 与实体设备的工具。从 FreeRTOS 电机控制到 MuJoCo 仿真，再到端侧 AI 实验，探索代码如何走进真实世界。
 
-[浏览我的项目 ↗](https://github.com/Coolenz?tab=repositories) · [English →](./README.md)
+[浏览公开项目](https://github.com/Coolenz?tab=repositories) &nbsp; / &nbsp; [English](./README.md)
 
-## 正在构建 Coloop
+## 正在构建：Coloop
 
-**让 AI 更靠近设备。**
-
-Coloop 是我对 AI 辅助电脑操作的持续探索，连接 Windows 工作台与 RK 硬件。项目目前在私有仓库中开发。
+对 **AI 辅助电脑操作**的持续探索，连接 Windows 工作台与 RK 硬件。项目目前在私有仓库中开发。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/loop-dark.svg">
-  <img src="./assets/loop-light.svg" alt="Coloop 概念流程：观察、规划、执行，再验证，形成持续循环" width="100%">
+  <img src="./assets/loop-light.svg" alt="Coloop 概念回路：观察屏幕、规划任务、通过设备执行动作，再验证结果" width="100%">
 </picture>
 
 ## 公开作品
 
-### [五自由度机械臂仿真 ↗](https://github.com/Coolenz/arm-robot-mujoco-simulation)
+**[五自由度机械臂仿真](https://github.com/Coolenz/arm-robot-mujoco-simulation)**  
+使用 **Python** 与 **MuJoCo**，在模拟环境中探索机器人的运动。
 
-使用 **MuJoCo** 与 **Python** 搭建五自由度机械臂仿真，在模拟环境中探索机器人的运动。
+**[FreeRTOS 双路 FOC](https://github.com/Coolenz/freeRTOS_FOC)**  
+基于 **C++** 的双路磁场定向电机控制，包含闭环位置控制。
 
-### [FreeRTOS 双路 FOC ↗](https://github.com/Coolenz/freeRTOS_FOC)
+```text
+嵌入式      C++ / FreeRTOS / 电机控制
+机器人      Python / MuJoCo / 仿真
+正在探索    端侧 AI / 人与设备的交互
+```
 
-基于 **FreeRTOS** 与 **C++** 的双路磁场定向电机控制，包含闭环位置控制。
+## 贡献天际线
 
-## 技术与探索
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/activity-dark.svg">
+  <img src="./profile-3d-contrib/activity-light.svg" alt="Coolenz 的公开 GitHub 贡献日历，以三维天际线展示，并包含语言和活动分布" width="100%">
+</picture>
 
-**嵌入式** &nbsp; C++ · FreeRTOS · 电机控制  
-**机器人** &nbsp; Python · MuJoCo · 仿真  
-**正在探索** &nbsp; 端侧 AI · 人与设备的交互
+根据公开 GitHub 活动每天自动生成。[查看更新任务](https://github.com/Coolenz/Coolenz/actions/workflows/profile.yml)。
+
+<details>
+  <summary>展开贡献轨迹动画</summary>
+  <br>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-trace-dark.svg">
+    <img src="./assets/contribution-trace-light.svg" alt="沿着 Coolenz GitHub 贡献日历移动的轨迹动画" width="100%">
+  </picture>
+</details>
 
 ---
 
-<p align="center">让软件与真实世界相遇。<br><a href="https://github.com/Coolenz?tab=repositories">在 GitHub 关注项目进展 ↗</a></p>
+[全部项目](https://github.com/Coolenz?tab=repositories) &nbsp; / &nbsp; [主页实现与维护说明](./PROFILE.md)

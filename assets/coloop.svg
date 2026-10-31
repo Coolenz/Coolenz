@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <title>Coloop — rounded closed semicircles</title>
+  <rect width="128" height="128" rx="32" fill="#202124"/>
+  <g transform="translate(64 64) rotate(-35) scale(1.08) translate(-64 -64)" fill="#FFFFFF" fill-rule="evenodd">
+    <path d="M52.9042 23.5037A42.5 42.5 0 0 0 52.9042 104.4963A4.6 4.6 0 0 0 58.9 100.1132V27.8868A4.6 4.6 0 0 0 52.9042 23.5037Z M48.086 37.2302A32.1 32.1 0 0 0 48.086 90.7698A2.2 2.2 0 0 0 51.5 88.9351V39.0649A2.2 2.2 0 0 0 48.086 37.2302Z"/>
+    <path transform="translate(128 0) scale(-1 1)" d="M52.9042 23.5037A42.5 42.5 0 0 0 52.9042 104.4963A4.6 4.6 0 0 0 58.9 100.1132V27.8868A4.6 4.6 0 0 0 52.9042 23.5037Z M48.086 37.2302A32.1 32.1 0 0 0 48.086 90.7698A2.2 2.2 0 0 0 51.5 88.9351V39.0649A2.2 2.2 0 0 0 48.086 37.2302Z"/>
+  </g>
+</svg>
