@@ -22,6 +22,11 @@ for relative in (
     )
     accessible = f'<title>{escape(title)}</title><desc>{escape(description)}</desc>'
     reduced_motion = '<style>@media(prefers-reduced-motion:reduce){svg *{animation:none!important;transition:none!important}}</style>'
+    content = content.replace(accessible, '').replace(reduced_motion, '')
+    if not trace:
+        colors = {'#f34b7d': '#4de0ed', '#3572A5': '#4b8dbd', '#444444': '#345267'} if 'dark' in path.name else {'#f34b7d': '#087c94', '#3572A5': '#4b8dbd', '#444444': '#a5c4d3'}
+        for original, replacement in colors.items():
+            content = content.replace(original, replacement)
     content = re.sub(r'(<svg\b[^>]*>)', lambda match: match[1] + accessible + reduced_motion, content, count=1)
-    path.write_text(content, encoding='utf-8')
+    path.write_text(content, encoding='utf-8', newline=chr(10))
     print(f'Finalized {relative}')

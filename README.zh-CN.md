@@ -28,11 +28,9 @@
 **[FreeRTOS 双路 FOC](https://github.com/Coolenz/freeRTOS_FOC)**  
 基于 **C++** 的双路磁场定向电机控制，包含闭环位置控制。
 
-```text
-嵌入式      C++ / FreeRTOS / 电机控制
-机器人      Python / MuJoCo / 仿真
-正在探索    端侧 AI / 人与设备的交互
-```
+**嵌入式** — C++ · FreeRTOS · 电机控制  
+**机器人** — Python · MuJoCo · 仿真  
+**正在探索** — 端侧 AI · 人与设备的交互
 
 ## 贡献天际线
 

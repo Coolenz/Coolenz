@@ -28,11 +28,9 @@ Robotic movement in a simulated environment, built with **Python** and **MuJoCo*
 **[FreeRTOS dual-channel FOC](https://github.com/Coolenz/freeRTOS_FOC)**  
 Dual-channel field-oriented motor control in **C++**, including closed-loop position control.
 
-```text
-embedded     C++ / FreeRTOS / motor control
-robotics     Python / MuJoCo / simulation
-exploring    edge AI / human–device interaction
-```
+**Embedded** — C++ · FreeRTOS · motor control  
+**Robotics** — Python · MuJoCo · simulation  
+**Exploring** — edge AI · human–device interaction
 
 ## Contribution skyline
 
