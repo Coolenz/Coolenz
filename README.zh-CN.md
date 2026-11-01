@@ -1,8 +1,8 @@
 <p align="right"><a href="./README.md">English</a> · <strong>简体中文</strong></p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
-  <img src="./assets/hero-light.svg" alt="Coolen：嵌入式、机器人与端侧 AI；Coloop 标志位于处理器中，周围有流动的信号线路" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg?v=orbital-20261101">
+  <img src="./assets/hero-light.svg?v=orbital-20261101" alt="Coolen：银色 Coloop 双半圆，星点沿细线轨道缓慢环绕" width="100%">
 </picture>
 
 ### 让软件与真实世界相遇。

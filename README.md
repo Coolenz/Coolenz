@@ -1,8 +1,8 @@
 <p align="right"><strong>English</strong> · <a href="./README.zh-CN.md">简体中文</a></p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
-  <img src="./assets/hero-light.svg" alt="Coolen — embedded systems, robotics and edge AI; the Coloop mark inside a processor with animated signal traces" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg?v=orbital-20261101">
+  <img src="./assets/hero-light.svg?v=orbital-20261101" alt="Coolen — silver Coloop semicircles surrounded by slowly orbiting star points and fine orbital lines" width="100%">
 </picture>
 
 ### Software meets the physical world.

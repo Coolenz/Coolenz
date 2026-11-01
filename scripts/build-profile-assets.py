@@ -26,45 +26,59 @@ def lettering(text, x, y, size, fill):
 def mono(text, x, y, size, color):
     return f'<text x="{x}" y="{y}" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="{size}" fill="{color}">{escape(text)}</text>'
 
+arc = 'M51.588 24.138A41.75 41.75 0 0 0 51.588 103.862C54.8 104.9 56.65 102.5 56.65 99.2V28.8C56.65 25.5 54.8 23.1 51.588 24.138Z M47.9 36.056A32.25 32.25 0 0 0 47.9 91.944Q49.35 92.73 49.35 91.08V36.92Q49.35 35.27 47.9 36.056Z'
+
+for theme in ['dark', 'light']:
+    dark = theme == 'dark'
+    bg, fg, muted, line = ('#202124','#f8f8f6','#b7b9bd','#45464a') if dark else ('#f8f8f6','#202124','#55585e','#d4d5d8')
+    hero = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Coolen</title><desc id="desc">Embedded systems, robotics and edge AI. Coloop's paired arcs with a slow orbital animation.</desc>
+<defs>
+ <linearGradient id="silver" x1="20" y1="25" x2="105" y2="100" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#ffffff"/><stop offset=".28" stop-color="#c4c7cc"/><stop offset=".48" stop-color="#ffffff"/><stop offset=".63" stop-color="#71757c"/><stop offset=".83" stop-color="#e0e2e5"/><stop offset="1" stop-color="#969ba2"/>
+ </linearGradient>
+ <clipPath id="frame"><rect width="1280" height="420" rx="18"/></clipPath>
+</defs>
+<style>
+ .orbit {{ transform-origin:960px 210px; animation:orbit 36s linear infinite; }}
+ @keyframes orbit {{ to {{ transform:rotate(360deg); }} }}
+ @media (prefers-reduced-motion:reduce) {{ .orbit {{ animation:none; }} }}
+</style>
+<g clip-path="url(#frame)">
+ <path fill="{bg}" d="M0 0h1280v420H0z"/>
+ <path stroke="{line}" d="M56 350H1224"/>
+ {lettering('Coolen',56,208,108,fg)}
+ {lettering('Software meets',61,254,24,muted)}
+ {lettering('the physical world.',61,288,24,muted)}
+ {lettering('EMBEDDED / ROBOTICS / EDGE AI',61,386,13,muted)}
+ <g stroke="{line}">
+  <ellipse cx="960" cy="210" rx="247" ry="105" transform="rotate(-28 960 210)"/>
+  <ellipse cx="960" cy="210" rx="208" ry="160" transform="rotate(24 960 210)"/>
+  <path d="M690 210h22m496 0h22M960 24v18m0 336v18"/>
+ </g>
+ <g class="orbit">
+  <circle cx="960" cy="210" r="182" stroke="{line}" stroke-dasharray="2 12"/>
+  <path d="M960 28a182 182 0 0 1 157.6 91" stroke="{muted}" stroke-width="1.5"/>
+  <circle cx="1117.6" cy="119" r="4" fill="{fg}"/>
+  <circle cx="802.4" cy="301" r="3" fill="{muted}"/>
+ </g>
+ <g transform="translate(800 50) scale(2.5)">
+  <g transform="rotate(-35 64 64)" fill="url(#silver)" fill-rule="evenodd">
+   <path transform="translate(1.8 0)" d="{arc}"/>
+   <path transform="translate(126.2 0) scale(-1 1)" d="{arc}"/>
+  </g>
+ </g>
+ {lettering('COOLENZ / GITHUB',1032,386,13,muted)}
+</g></svg>'''
+    (ROOT / f'assets/hero-{theme}.svg').write_text(hero, encoding='utf-8', newline='\n')
+
+
 for theme in ('dark', 'light'):
     dark = theme == 'dark'
     bg, panel, ink, muted, trace, cyan = (
         ('#081521', '#0d2132', '#edfaff', '#9ab9cd', '#244a60', '#4de0ed') if dark else
         ('#edf6fb', '#e1eff7', '#12344a', '#41657a', '#aecbdc', '#087c94')
     )
-    routes = [
-        'M822 125H768Q750 125 750 107V96H690', 'M822 193H696',
-        'M822 261H770Q748 261 748 283V310H690',
-        'M1140 125H1170Q1188 125 1188 107V96H1224', 'M1140 193H1224',
-        'M1140 261H1170Q1188 261 1188 283V310H1224',
-    ]
-    hero = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" fill="none" role="img" aria-labelledby="title desc">
-<title id="title">Coolen — software meets the physical world</title>
-<desc id="desc">Embedded systems, robotics and edge AI. The Coloop mark sits inside a processor connected by cyan signal traces.</desc>
-<defs><clipPath id="frame"><rect width="1280" height="420" rx="18"/></clipPath></defs>
-<style>.signal{{stroke-dasharray:18 330;animation:signal 8s linear infinite}}@keyframes signal{{to{{stroke-dashoffset:-348}}}}@media(prefers-reduced-motion:reduce){{.signal{{animation:none}}}}</style>
-<g clip-path="url(#frame)"><path fill="{bg}" d="M0 0h1280v420H0z"/>
-{mono('coolenz@workbench:~',56,58,18,muted)}
-{lettering('Coolen',56,200,100,ink)}
-{lettering('Embedded systems + robotics.',61,251,24,muted)}
-{lettering('Edge AI, closer to the device.',61,289,24,muted)}
-<path d="M56 356H1224" stroke="{trace}"/>
-{mono('github.com/Coolenz',61,391,16,muted)}
-<rect x="840" y="78" width="280" height="264" rx="22" fill="{panel}" stroke="{trace}" stroke-width="2"/>
-<rect x="857" y="95" width="246" height="230" rx="14" stroke="{cyan}" stroke-opacity=".35"/>
-'''
-    for y in (125, 159, 193, 227, 261, 295):
-        hero += f'<path d="M822 {y}H840M1120 {y}H1140" stroke="{muted}" stroke-width="4" stroke-linecap="round"/>'
-    for x in (884, 932, 980, 1028, 1076):
-        hero += f'<path d="M{x} 60V78M{x} 342V356" stroke="{muted}" stroke-width="4" stroke-linecap="round"/>'
-    for route in routes:
-        hero += f'<path d="{route}" stroke="{trace}" stroke-width="2"/><path class="signal" d="{route}" stroke="{cyan}" stroke-width="2"/>'
-    for x,y in ((690,96),(696,193),(690,310),(1224,96),(1224,193),(1224,310)):
-        hero += f'<circle cx="{x}" cy="{y}" r="4" fill="{cyan}"/>'
-    hero += f'<g transform="translate(885 115) scale(1.48)">{mark.replace("#FFFFFF",ink)}</g>'
-    hero += mono('Coloop / in development',840,391,15,muted) + '</g></svg>'
-    (ROOT / f'assets/hero-{theme}.svg').write_text(hero, encoding='utf-8')
-
     loop = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 196" fill="none" role="img" aria-labelledby="title desc">
 <title id="title">Coloop feedback loop</title><desc id="desc">Observe screen context, plan a task, act through a device, and verify the result. A concept in development.</desc>
 <rect width="1280" height="196" rx="12" fill="{bg}"/>
@@ -78,6 +92,6 @@ for theme in ('dark', 'light'):
             loop += f'<path d="M{x+204} 86h60m-7-6 7 6-7 6" stroke="{trace}" stroke-width="2"/>'
     loop += f'<path d="M1190 142v24H90v-24m-6 7 6-7 6 7" stroke="{trace}" stroke-width="2"/>'
     loop += mono('feedback',603,186,12,muted) + '</svg>'
-    (ROOT / f'assets/loop-{theme}.svg').write_text(loop, encoding='utf-8')
+    (ROOT / f'assets/loop-{theme}.svg').write_text(loop, encoding='utf-8', newline='\n')
 
-print('Built theme-aware processor hero and Coloop architecture SVGs.')
+print('Built restored orbital hero and Coloop architecture SVGs.')
