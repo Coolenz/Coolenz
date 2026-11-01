@@ -1,8 +1,8 @@
 <p align="right"><a href="./README.md">English</a> · <strong>简体中文</strong></p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg?v=orbital-20261101">
-  <img src="./assets/hero-light.svg?v=orbital-20261101" alt="Coolen：银色 Coloop 双半圆，星点沿细线轨道缓慢环绕" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg?v=constellation-20261101">
+  <img src="./assets/hero-light.svg?v=constellation-20261101" alt="Coolen：银色 Coloop 双半圆，星点沿多层轨道环绕，带渐淡拖尾与轻微闪烁" width="100%">
 </picture>
 
 ### 让软件与真实世界相遇。

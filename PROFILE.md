@@ -9,7 +9,7 @@ The English profile is `README.md`; the Chinese version is `README.zh-CN.md`. Bo
 - [actions/checkout](https://github.com/actions/checkout): checks out this repository. Pinned to `11d5960a326750d5838078e36cf38b85af677262`.
 - Sora is distributed under the SIL Open Font License; see `assets/OFL-Sora.txt`.
 
-The hero restores the original silver Coloop mark with slowly orbiting star points and fine orbital lines. Its original dark/light SVGs come from commit `5fd103b`; the contribution skyline and trace automation remain enabled. The hero and architecture artwork are original SVGs built around the Coloop mark. All load-bearing images are stored in this repository. No live widget endpoint or personal token is needed.
+The hero preserves the original silver Coloop mark and graphite/paper palettes from commit `5fd103b`. Three orbital paths carry stars with tapering trails at 26, 39, and 54 seconds, with a subtle twinkling constellation and a foreground pass for depth. These are script-free SVG/CSS animations; reduced-motion preferences show a composed still image. The contribution skyline and trace automation remain enabled. The hero and architecture artwork are original SVGs built around the Coloop mark. All load-bearing images are stored in this repository. No live widget endpoint or personal token is needed.
 
 ## Updates
 

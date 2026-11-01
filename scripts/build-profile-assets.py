@@ -28,21 +28,81 @@ def mono(text, x, y, size, color):
 
 arc = 'M51.588 24.138A41.75 41.75 0 0 0 51.588 103.862C54.8 104.9 56.65 102.5 56.65 99.2V28.8C56.65 25.5 54.8 23.1 51.588 24.138Z M47.9 36.056A32.25 32.25 0 0 0 47.9 91.944Q49.35 92.73 49.35 91.08V36.92Q49.35 35.27 47.9 36.056Z'
 
+
+def orbital_tracks(fg, muted, line):
+    """A small, script-free constellation, compatible with SVG-as-image rendering."""
+    tracks = []
+    # Normalized path lengths keep the star and its fading wake on the same orbit.
+    for name, seconds, phase, reverse, width in (
+        ('near', 26, .18, False, 2.4),
+        ('far', 39, .64, True, 1.8),
+        ('polar', 54, .84, False, 1.35),
+    ):
+        direction = 'reverse' if reverse else 'normal'
+        def moving(dash, stroke, thickness, alpha, lag=0):
+            delay = -seconds * phase + (-1 if reverse else 1) * seconds * lag / 1000
+            return (f'<use href="#{name}" class="drift" stroke="{stroke}" stroke-width="{thickness}" '
+                    f'stroke-opacity="{alpha}" stroke-linecap="round" stroke-dasharray="{dash}" '
+                    f'style="--still:{(1 if reverse else -1) * (phase * 1000 - lag)};animation-duration:{seconds}s;animation-delay:{delay:.4f}s;animation-direction:{direction}"/>')
+        body = f'<use href="#{name}" stroke="{line}" stroke-width=".8"/>'
+        # Twelve short contiguous segments form a genuinely tapering, fading tail.
+        for segment in range(12, 0, -1):
+            alpha = round(.06 + .76 * (1 - segment / 13) ** 1.4, 3)
+            body += moving('5 995', fg, round(width * (.35 + .65 * (1 - segment / 13)), 2), alpha, segment * 5)
+        body += moving('0.01 999.99', fg, 11, .045)
+        body += moving('0.01 999.99', fg, 6.5, .16)
+        body += moving('0.01 999.99', fg, 4.3 if name == 'near' else 3.3, .95)
+        if name == 'far':
+            # A quieter companion on the same distant orbit.
+            body += moving('0.01 999.99', muted, 2, .7, 480)
+        tracks.append((name, body))
+    background = ''.join(f'<g class="track-{name}">{body}</g>' for name, body in tracks)
+    # The lower sweep crosses in front of the mark; upper sweeps pass behind it.
+    foreground = f'<g clip-path="url(#front-pass)">{tracks[0][1]}</g>'
+    stars = ''
+    points = [(726,97,1),(780,51,.9),(851,35,1.2),(1026,43,.8),(1146,65,1),
+              (1195,120,.8),(1210,269,1),(1155,314,1.2),(1084,327,.8),
+              (791,320,1),(718,279,.9),(739,169,.65),(1115,106,.7),(1164,228,.65)]
+    for i,(x,y,r) in enumerate(points):
+        stars += (f'<circle class="twinkle" cx="{x}" cy="{y}" r="{r}" fill="{muted}" opacity=".4" '
+                  f'style="animation-duration:{6+i%5}s;animation-delay:-{i*.73:.2f}s"/>')
+    # Two restrained four-point stars give the field a deliberate constellation accent.
+    for x,y,delay in [(781,96,1.3),(1167,291,4.6)]:
+        stars += (f'<path class="twinkle" d="M{x-4} {y}Q{x} {y} {x} {y-4}Q{x} {y} {x+4} {y}'
+                  f'Q{x} {y} {x} {y+4}Q{x} {y} {x-4} {y}Z" fill="{fg}" opacity=".5" '
+                  f'style="animation-duration:7.6s;animation-delay:-{delay}s"/>')
+    return stars + background, foreground
+
 for theme in ['dark', 'light']:
     dark = theme == 'dark'
     bg, fg, muted, line = ('#202124','#f8f8f6','#b7b9bd','#45464a') if dark else ('#f8f8f6','#202124','#55585e','#d4d5d8')
+    stars, front_stars = orbital_tracks(fg, muted, line)
     hero = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" fill="none" role="img" aria-labelledby="title desc">
-<title id="title">Coolen</title><desc id="desc">Embedded systems, robotics and edge AI. Coloop's paired arcs with a slow orbital animation.</desc>
+<title id="title">Coolen</title><desc id="desc">Embedded systems, robotics and edge AI. Coloop's silver paired arcs surrounded by layered orbital star trails and a gently twinkling constellation.</desc>
 <defs>
  <linearGradient id="silver" x1="20" y1="25" x2="105" y2="100" gradientUnits="userSpaceOnUse">
   <stop stop-color="#ffffff"/><stop offset=".28" stop-color="#c4c7cc"/><stop offset=".48" stop-color="#ffffff"/><stop offset=".63" stop-color="#71757c"/><stop offset=".83" stop-color="#e0e2e5"/><stop offset="1" stop-color="#969ba2"/>
  </linearGradient>
+ <ellipse id="near" cx="960" cy="210" rx="247" ry="105" transform="rotate(-28 960 210)" pathLength="1000"/>
+ <ellipse id="far" cx="960" cy="210" rx="208" ry="160" transform="rotate(24 960 210)" pathLength="1000"/>
+ <circle id="polar" cx="960" cy="210" r="182" pathLength="1000"/>
+ <linearGradient id="field-fade" x1="0" y1="18" x2="0" y2="344" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#ffffff" stop-opacity="0"/><stop offset=".1" stop-color="#ffffff"/>
+  <stop offset=".88" stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+ </linearGradient>
+ <mask id="field-mask" maskUnits="userSpaceOnUse" x="682" y="18" width="552" height="326"><path d="M682 18H1234V344H682Z" fill="url(#field-fade)"/></mask>
+ <clipPath id="front-pass"><path d="M690 210H1230V344H690Z"/></clipPath>
+ <clipPath id="star-field"><path d="M682 18H1234V344H682Z"/></clipPath>
  <clipPath id="frame"><rect width="1280" height="420" rx="18"/></clipPath>
 </defs>
 <style>
- .orbit {{ transform-origin:960px 210px; animation:orbit 36s linear infinite; }}
- @keyframes orbit {{ to {{ transform:rotate(360deg); }} }}
- @media (prefers-reduced-motion:reduce) {{ .orbit {{ animation:none; }} }}
+ .drift {{ animation:drift 26s linear infinite; }}
+ .twinkle {{ animation:twinkle 7s ease-in-out infinite; }}
+ .orbital-grid {{ transform-origin:960px 210px; animation:revolve 90s linear infinite; }}
+ @keyframes drift {{ to {{ stroke-dashoffset:-1000; }} }}
+ @keyframes revolve {{ to {{ transform:rotate(360deg); }} }}
+ @keyframes twinkle {{ 0%,100% {{ opacity:.22; }} 50% {{ opacity:.78; }} }}
+ @media (prefers-reduced-motion:reduce) {{ .drift,.twinkle,.orbital-grid {{ animation:none; }} .drift {{ stroke-dashoffset:var(--still); }} }}
 </style>
 <g clip-path="url(#frame)">
  <path fill="{bg}" d="M0 0h1280v420H0z"/>
@@ -51,16 +111,9 @@ for theme in ['dark', 'light']:
  {lettering('Software meets',61,254,24,muted)}
  {lettering('the physical world.',61,288,24,muted)}
  {lettering('EMBEDDED / ROBOTICS / EDGE AI',61,386,13,muted)}
- <g stroke="{line}">
-  <ellipse cx="960" cy="210" rx="247" ry="105" transform="rotate(-28 960 210)"/>
-  <ellipse cx="960" cy="210" rx="208" ry="160" transform="rotate(24 960 210)"/>
-  <path d="M690 210h22m496 0h22M960 24v18m0 336v18"/>
- </g>
- <g class="orbit">
-  <circle cx="960" cy="210" r="182" stroke="{line}" stroke-dasharray="2 12"/>
-  <path d="M960 28a182 182 0 0 1 157.6 91" stroke="{muted}" stroke-width="1.5"/>
-  <circle cx="1117.6" cy="119" r="4" fill="{fg}"/>
-  <circle cx="802.4" cy="301" r="3" fill="{muted}"/>
+ <g clip-path="url(#star-field)" mask="url(#field-mask)">
+  <circle class="orbital-grid" cx="960" cy="210" r="182" stroke="{line}" stroke-width=".8" stroke-dasharray="1 11" opacity=".7"/>
+  {stars}
  </g>
  <g transform="translate(800 50) scale(2.5)">
   <g transform="rotate(-35 64 64)" fill="url(#silver)" fill-rule="evenodd">
@@ -68,6 +121,7 @@ for theme in ['dark', 'light']:
    <path transform="translate(126.2 0) scale(-1 1)" d="{arc}"/>
   </g>
  </g>
+ <g clip-path="url(#star-field)" mask="url(#field-mask)">{front_stars}</g>
  {lettering('COOLENZ / GITHUB',1032,386,13,muted)}
 </g></svg>'''
     (ROOT / f'assets/hero-{theme}.svg').write_text(hero, encoding='utf-8', newline='\n')
@@ -94,4 +148,4 @@ for theme in ('dark', 'light'):
     loop += mono('feedback',603,186,12,muted) + '</svg>'
     (ROOT / f'assets/loop-{theme}.svg').write_text(loop, encoding='utf-8', newline='\n')
 
-print('Built restored orbital hero and Coloop architecture SVGs.')
+print('Built layered orbital star trails and Coloop architecture SVGs.')
