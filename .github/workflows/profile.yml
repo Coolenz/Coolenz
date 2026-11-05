@@ -1,17 +1,8 @@
 name: Refresh profile visuals
 
+# Historical visual assets: manual refresh only. The profile is now a project list.
 on:
-  schedule:
-    - cron: '17 19 * * *'
   workflow_dispatch:
-  push:
-    branches: [main, profile-tech-refresh-20261031]
-    paths:
-      - '.github/workflows/profile.yml'
-      - 'profile-settings.json'
-      - 'scripts/finalize-activity.py'
-      - 'README.md'
-      - 'README.zh-CN.md'
 
 permissions:
   contents: read
